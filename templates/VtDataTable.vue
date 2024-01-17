@@ -4,6 +4,7 @@
 
         <div :class="props.theme.row">
             <div :class="props.theme.column">
+                <vnodes :vnodes="props.slots.beforeFilterWrapper"/>
                 <div v-if="!props.opts.filterByColumn && props.opts.filterable"
                      :class="`${props.theme.field} ${props.theme.inline} ${props.theme.left} VueTables__search`">
                     <vnodes :vnodes="props.slots.beforeFilter"/>
@@ -12,13 +13,14 @@
                 </div>
                 <vnodes :vnodes="props.slots.afterFilterWrapper"/>
 
+                <vnodes :vnodes="props.slots.beforeLimitWrapper"/>
                 <div v-if="(props.perPageValues.length > 1 || props.opts.alwaysShowPerPageSelect) && !props.opts.pagination.virtual"
                      :class="`${props.theme.field} ${props.theme.inline} ${props.theme.right} VueTables__limit`">
                     <vnodes :vnodes="props.slots.beforeLimit"/>
                     <vt-per-page-selector/>
                     <vnodes :vnodes="props.slots.afterLimit"/>
-
                 </div>
+                <vnodes :vnodes="props.slots.afterLimitWrapper"/>
 
                 <div class="VueTables__pagination-wrapper" v-if="props.opts.pagination.dropdown && props.totalPages > 1">
                     <div :class="`${props.theme.field} ${props.theme.inline} ${props.theme.right} VueTables__dropdown-pagination`">

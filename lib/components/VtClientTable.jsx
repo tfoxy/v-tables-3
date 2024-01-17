@@ -119,6 +119,7 @@ export default function (RLClientTable) {
 
                         <div class={props.theme.row}>
                             <div class={props.theme.column}>
+                                {props.slots.beforeFilterWrapper ? props.slots.beforeFilterWrapper() : ''}
                                 {!props.opts.filterByColumn && props.opts.filterable ?
                                     <div
                                         class={`${props.theme.field} ${props.theme.inline} ${props.theme.left} VueTables__search`}>
@@ -128,6 +129,7 @@ export default function (RLClientTable) {
                                     </div> : ''}
                                 {props.slots.afterFilterWrapper ? props.slots.afterFilterWrapper() : ''}
 
+                                {props.slots.beforeLimitWrapper ? props.slots.beforeLimitWrapper() : ''}
                                 {(props.perPageValues.length > 1 || props.opts.alwaysShowPerPageSelect) && !props.opts.pagination.virtual ?
                                     <div
                                         class={`${props.theme.field} ${props.theme.inline} ${props.theme.right} VueTables__limit`}>
@@ -135,6 +137,7 @@ export default function (RLClientTable) {
                                         {h(VtPerPageSelector)}
                                         {props.slots.afterLimit ? props.slots.afterLimit() : ''}
                                     </div> : ''}
+                                {props.slots.afterLimitWrapper ? props.slots.afterLimitWrapper() : ''}
 
                                 {props.opts.pagination.dropdown && props.totalPages > 1 ?
                                     <div class="VueTables__pagination-wrapper">
